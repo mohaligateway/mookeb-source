@@ -16,7 +16,6 @@ class AuthController extends Controller
      */
     public function login()
     {
-        // dd(auth()->check());
         return view('general.auth.login');
     }
 
@@ -39,5 +38,11 @@ class AuthController extends Controller
         }
 
         throw ValidationException::withMessages(['password' => 'رمز عبور اشتباه وارد شده است.']);
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
     }
 }

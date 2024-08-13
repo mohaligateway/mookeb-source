@@ -44,9 +44,11 @@
                 <a class="nav-link" href="{{ route('admin.servant.list') }}">لیست خادمین</a>
             </li>
         </ul>
-        <form action="">
+        <form method="POST" action="{{ route('general.logout') }}">
             @csrf
-            <button type="submit"></button>
+            <button type="submit" class="btn btn-sm btn-warning">
+                خروج از ناحیه کاربری
+            </button>
         </form>
     </div>
     </nav>

@@ -14,6 +14,7 @@ Route::name('general')->group(function() {
     //route for login
     Route::get('/login', [AuthController::class,'login'])->name('.login.index');
     Route::post('/login/submit', [AuthController::class,'submit'])->name('.login.submit');
+    Route::post('/logout', [AuthController::class,'logout'])->name('.logout');
 
 });
 

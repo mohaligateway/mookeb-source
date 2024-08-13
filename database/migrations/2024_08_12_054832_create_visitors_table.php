@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('national_code', 20)->nullable();
             $table->string('passport_no', 20)->nullable();
             $table->string('city')->nullable();
-            $table->text('exited_at')->nullable();
+            $table->json('exited_at')->nullable();
             $table->timestamp('leaved_at')->nullable();
             $table->enum('gender', ['زن', 'مرد'])->nullable();
             $table->unsignedInteger('user_id');

@@ -60,6 +60,7 @@
                             <td>
                                 <button class="btn btn-sm btn-danger @if(!is_null($item->leaved_at)) disabled @endif" @if(is_null($item->leaved_at)) wire:click="leavedAt({{ $item->id }})" @endif">ثبت خروج</button>
                                 <button class="btn btn-sm btn-success" wire:click="exitedAt({{ $item->id }})">ثبت تردد</button>
+                                <button class="btn btn-sm btn-primary" wire:click="exitedAt({{ $item->id }})">مشاهده ثبت ترددها</button>
                             </td>
                         </tr>
                     @empty

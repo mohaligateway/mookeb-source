@@ -68,8 +68,20 @@ class VisitorsTable extends Component
 
     public function exitedAt($id)
     {
-        $arrayOfExitedAt = Visitor::find($id)->exited_at;
-        dd($arrayOfExitedAt);
+        $array = [];
+
+        if(!is_null(Visitor::find($id)->exited_at)) {
+            foreach(json_decode(Visitor::find($id)->exited_at) as $item) {
+                array_push($array, $item);
+            }
+        }
+
+        array_push($array, Carbon::now());
+        
+        Visitor::find($id)->update([
+            'exited_at' => $array
+        ]);
+
     }
 
     public function getRowsProperty()
