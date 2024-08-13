@@ -1,0 +1,42 @@
+version: '3.5'
+services:
+
+  #PHP Service
+  appBineshBackend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: asascript.com/php
+    container_name: app-binesh-backend
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: appBinesshBackend
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+      - ./supervisor/laravel-worker.conf:/etc/supervisor/conf.d/laravel-worker.conf
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - core-proxy-network
+
+  #Nginx Service
+  webserverBineshBackend:
+    image: nginx:alpine
+    container_name: webserver-binesh-backend
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - core-proxy-network
+
+#Docker Networks
+networks:
+  core-proxy-network:
+    external:
+      name: proxy_network
