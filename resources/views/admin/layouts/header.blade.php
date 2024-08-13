@@ -44,5 +44,9 @@
                 <a class="nav-link" href="{{ route('admin.servant.list') }}">لیست خادمین</a>
             </li>
         </ul>
+        <form action="">
+            @csrf
+            <button type="submit"></button>
+        </form>
     </div>
     </nav>
