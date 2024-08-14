@@ -7,3 +7,17 @@
         <livewire:admin.visitor-create />
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('visitor-register', (event) => {
+                iziToast.success({
+                    title: 'موفق',
+                    message: 'زائر با موفقیت ثبت شد.',
+                    position: 'center'
+                });
+            });
+        });
+    </script>
+@endpush

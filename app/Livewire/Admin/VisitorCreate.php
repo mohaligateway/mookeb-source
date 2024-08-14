@@ -59,7 +59,31 @@ class VisitorCreate extends Component
             'user_id' => auth()->user()->id
         ]);
 
-        return redirect(route('admin.visitor.list'));
+        $this->dispatch('visitor-register');
+
+        $this->firstname = '';
+        
+        $this->lastname = '';
+    
+        $this->mobile = '';
+    
+        $this->national_code = '';
+    
+        $this->passport_no = '';
+    
+        $this->city = '';
+    
+        $this->tent_no = '';
+    
+        $this->row_no = '';
+    
+        $this->gender = '';
+    
+        $this->nationalCodeCounter = 0;
+    
+        $this->mobileCounter = 0;
+    
+        $this->passportNoCounter = 0;
 
 
     }
