@@ -64,6 +64,8 @@ class VisitorsTable extends Component
         Visitor::find($id)->update([
             'leaved_at' => Carbon::now()
         ]);
+
+        $this->dispatch('visitor-exited'); 
     }
 
     public function exitedAt($id)
@@ -81,6 +83,8 @@ class VisitorsTable extends Component
         Visitor::find($id)->update([
             'exited_at' => $array
         ]);
+
+        $this->dispatch('visitor-leaved'); 
 
     }
 

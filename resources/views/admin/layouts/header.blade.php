@@ -13,7 +13,9 @@
 
     <link href="/css/admin/bootstrap.min.css" rel="stylesheet">
     <link href="/css/admin/starter.css" rel="stylesheet">
+    <link href="/css/admin/izitoast.min.css" rel="stylesheet">
     @livewireStyles
+    @stack('styles')
 
 </head>
 
