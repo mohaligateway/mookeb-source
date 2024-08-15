@@ -58,66 +58,68 @@
                 </div>
             </div>
 
-            <table id="example" class="table table-striped table-bordered text-center" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>نام</th>
-                        <th>نام خانوادگی</th>
-                        <th>کد ملی</th>
-                        <th>موبایل</th>
-                        <th>اسکان</th>
-                        <th>استراحتگاه</th>
-                        <th>تاریخ خروج</th>
-                        <th>عملیات</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($objects as $key => $item)
-                        @php
-                            if(is_null($item->leaved_at)) {
-                                $totalAccommodation = trim(Carbon\Carbon::createFromDate($item->created_at)->ago(), ' پیش');
-                            } else {
-                                $totalAccommodation = trim(Carbon\Carbon::parse($item->created_at)->diffForHumans($item->leaved_at), ' پیش از');
-                            }
-                        @endphp
+            <div class="table-responsive">
+                <table id="example" class="table table-striped table-bordered text-center" style="width:100%">
+                    <thead>
                         <tr>
-                            <td>{{ $item->firstname }}</td>
-                            <td>{{ $item->lastname }}</td>
-                            <td style="font-family: vazir-fd">{{ $item->national_code }}</td>
-                            <td style="font-family: vazir-fd">{{ $item->mobile }}</td>
-                            <td style="font-family: vazir-fd">{{ $totalAccommodation }}</td>
-                            <td style="font-family: vazir-fd">{{ $item->tent_no }}</td>
-                            <td style="font-family: vazir-fd; direction: ltr">{{ (!is_null($item->leaved_at)) ? jdate($item->leaved_at) : '------' }}</td>
-                            <td>
-                                @if(is_null($item->leaved_at))
-                                    <button class="btn btn-sm btn-danger" wire:click="leavedAt({{ $item->id }})">خروج</button>
-                                @endif
-                                <button class="btn btn-sm btn-success" wire:click="exitedAt({{ $item->id }})">تردد</button>
-                                @if(!is_null($item->exited_at))
-                                    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#visitor_modal" wire:click="showModal({{ $item->id }})">مشاهده</button>
-                                @endif
-                            </td>
+                            <th>نام</th>
+                            <th>نام خانوادگی</th>
+                            <th>کد ملی</th>
+                            <th>موبایل</th>
+                            <th>اسکان</th>
+                            <th>استراحتگاه</th>
+                            <th>تاریخ خروج</th>
+                            <th>عملیات</th>
                         </tr>
-                    @empty
-    
-                        empty
-    
-                    @endforelse
-                
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th>نام</th>
-                        <th>نام خانوادگی</th>
-                        <th>کد ملی</th>
-                        <th>موبایل</th>
-                        <th>اسکان</th>
-                        <th>استراحتگاه</th>
-                        <th>تاریخ خروج</th>
-                        <th>عملیات</th>
-                    </tr>
-                </tfoot>
-            </table>
+                    </thead>
+                    <tbody>
+                        @forelse ($objects as $key => $item)
+                            @php
+                                if(is_null($item->leaved_at)) {
+                                    $totalAccommodation = trim(Carbon\Carbon::createFromDate($item->created_at)->ago(), ' پیش');
+                                } else {
+                                    $totalAccommodation = trim(Carbon\Carbon::parse($item->created_at)->diffForHumans($item->leaved_at), ' پیش از');
+                                }
+                            @endphp
+                            <tr>
+                                <td>{{ $item->firstname }}</td>
+                                <td>{{ $item->lastname }}</td>
+                                <td style="font-family: vazir-fd">{{ $item->national_code }}</td>
+                                <td style="font-family: vazir-fd">{{ $item->mobile }}</td>
+                                <td style="font-family: vazir-fd">{{ $totalAccommodation }}</td>
+                                <td style="font-family: vazir-fd">{{ $item->tent_no }}</td>
+                                <td style="font-family: vazir-fd; direction: ltr">{{ (!is_null($item->leaved_at)) ? jdate($item->leaved_at) : '------' }}</td>
+                                <td>
+                                    @if(is_null($item->leaved_at))
+                                        <button class="btn btn-sm btn-danger" wire:click="leavedAt({{ $item->id }})">خروج</button>
+                                    @endif
+                                    <button class="btn btn-sm btn-success" wire:click="exitedAt({{ $item->id }})">تردد</button>
+                                    @if(!is_null($item->exited_at))
+                                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#visitor_modal" wire:click="showModal({{ $item->id }})">مشاهده</button>
+                                    @endif
+                                </td>
+                            </tr>
+                        @empty
+        
+                            empty
+        
+                        @endforelse
+                    
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>نام</th>
+                            <th>نام خانوادگی</th>
+                            <th>کد ملی</th>
+                            <th>موبایل</th>
+                            <th>اسکان</th>
+                            <th>استراحتگاه</th>
+                            <th>تاریخ خروج</th>
+                            <th>عملیات</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
 
             @if (isset($objects) && $objects->isNotEmpty())
                 <div class="row">
