@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\TentController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\General\AuthController;
 use App\Http\Controllers\General\HomeController;
@@ -30,5 +31,8 @@ Route::prefix('dashboard')->name('admin')->middleware('auth')->group(function() 
     Route::get('/register/visitor', [UserController::class,'registerVisitor'])->name('.register.visitor');
     Route::post('/register/visitor/submit', [UserController::class,'registerVisitorSubmit'])->name('.register.visitor.submit');
     Route::get('/register/visitor/list', [UserController::class,'visitorList'])->name('.visitor.list');
+
+
+    Route::get('/tent/list', [TentController::class,'list'])->name('.tent.list');
 
 });

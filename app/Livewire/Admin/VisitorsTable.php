@@ -4,7 +4,6 @@ namespace App\Livewire\Admin;
 
 use App\Livewire\WithBulkAction;
 use App\Livewire\WithSorting;
-use App\Models\User;
 use App\Models\Visitor;
 use Carbon\Carbon;
 use Livewire\Component;

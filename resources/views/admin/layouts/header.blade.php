@@ -42,6 +42,9 @@
             <li class="nav-item @if(url()->full() === route('admin.visitor.list')) active @endif">
                 <a class="nav-link" href="{{ route('admin.visitor.list') }}">لیست زائر</a>
             </li>
+            <li class="nav-item @if(url()->full() === route('admin.tent.list')) active @endif">
+                <a class="nav-link" href="{{ route('admin.tent.list') }}">لیست چادر</a>
+            </li>
             <li class="nav-item @if(url()->full() === route('admin.servant.list')) active @endif">
                 <a class="nav-link" href="{{ route('admin.servant.list') }}">لیست خادمین</a>
             </li>
