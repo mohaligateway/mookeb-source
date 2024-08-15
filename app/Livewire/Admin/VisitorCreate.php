@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Visitor;
+use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -46,6 +47,12 @@ class VisitorCreate extends Component
     public function submit()
     {
         $this->validate();
+
+        foreach(Visitor::whereTentNo($this->tent_no . '/' . $this->row_no)->get() as $item) {
+            if(is_null($item->leaved_at)) {
+                throw ValidationException::withMessages(['tent_no' => 'مکان این چادر پر است.']);
+            }
+        }
 
         Visitor::create([
             'firstname' => $this->firstname, 
