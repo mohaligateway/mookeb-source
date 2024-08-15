@@ -65,23 +65,28 @@
                         <th>نام خانوادگی</th>
                         <th>کد ملی</th>
                         <th>موبایل</th>
-                        <th>جنسیت</th>
+                        <th>اسکان</th>
                         <th>استراحتگاه</th>
-                        <th>تاریخ ورود</th>
                         <th>تاریخ خروج</th>
                         <th>عملیات</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($objects as $key => $item)
+                        @php
+                            if(is_null($item->leaved_at)) {
+                                $totalAccommodation = trim(Carbon\Carbon::createFromDate($item->created_at)->ago(), ' پیش');
+                            } else {
+                                $totalAccommodation = trim(Carbon\Carbon::parse($item->created_at)->diffForHumans($item->leaved_at), ' پیش از');
+                            }
+                        @endphp
                         <tr>
                             <td>{{ $item->firstname }}</td>
                             <td>{{ $item->lastname }}</td>
                             <td style="font-family: vazir-fd">{{ $item->national_code }}</td>
                             <td style="font-family: vazir-fd">{{ $item->mobile }}</td>
-                            <td>{{ $item->gender }}</td>
+                            <td style="font-family: vazir-fd">{{ $totalAccommodation }}</td>
                             <td style="font-family: vazir-fd">{{ $item->tent_no }}</td>
-                            <td style="font-family: vazir-fd; direction: ltr">{{ (!is_null($item->created_at)) ? jdate($item->ceated_at) : '------' }}</td>
                             <td style="font-family: vazir-fd; direction: ltr">{{ (!is_null($item->leaved_at)) ? jdate($item->leaved_at) : '------' }}</td>
                             <td>
                                 @if(is_null($item->leaved_at))
@@ -106,9 +111,8 @@
                         <th>نام خانوادگی</th>
                         <th>کد ملی</th>
                         <th>موبایل</th>
-                        <th>جنسیت</th>
+                        <th>اسکان</th>
                         <th>استراحتگاه</th>
-                        <th>تاریخ ورود</th>
                         <th>تاریخ خروج</th>
                         <th>عملیات</th>
                     </tr>
