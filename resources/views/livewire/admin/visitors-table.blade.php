@@ -46,16 +46,6 @@
                     </form>
     
                 </div>
-
-                <div class="col-md-3">
-    
-                    <select wire:model.live="gender" class="form-control">
-                        <option value="" disabled>جنسیت ...</option>
-                        <option value="زن">زن</option>
-                        <option value="مرد">مرد</option>
-                    </select>
-
-                </div>
             </div>
 
             <div class="table-responsive">
