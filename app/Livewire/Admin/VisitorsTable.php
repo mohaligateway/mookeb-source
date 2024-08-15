@@ -17,6 +17,8 @@ class VisitorsTable extends Component
     public $search = '';
     public $tent_no = '';
 
+    public $visitorId;
+
     /**
      * perpage default show
      *
@@ -86,6 +88,11 @@ class VisitorsTable extends Component
 
         $this->dispatch('visitor-leaved'); 
 
+    }
+
+    public function showModal($id)
+    {
+        $this->visitorId = $id;
     }
 
     public function getRowsProperty()

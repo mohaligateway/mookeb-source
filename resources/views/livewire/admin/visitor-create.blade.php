@@ -25,14 +25,14 @@
         <div class="col-md-6 col-12">
             <div class="form-group text-right">
                 <label for="mobile">موبایل</label>
-                <input type="number" class="form-control" wire:model.live="mobile" id="mobile">
+                <input type="number" class="form-control" wire:model.live="mobile" id="mobile" style="font-family: vazir-fd">
                 <small class="text-danger" style="font-family: vazir-FD">این موبایل {{ $mobileCounter }}  بار ثبت شده است</small>
             </div>
         </div>
         <div class="col-md-6 col-12">
             <div class="form-group text-right">
                 <label for="national_code">کد ملی</label>
-                <input type="number" class="form-control" wire:model.live="national_code" id="national_code">
+                <input type="number" class="form-control" wire:model.live="national_code" id="national_code" style="font-family: vazir-fd">
                 <small class="text-danger" style="font-family: vazir-FD">این کد ملی {{ $nationalCodeCounter }}  بار ثبت شده است</small>
             </div>
         </div>
@@ -64,7 +64,7 @@
                 <div class="d-flex">
                     <div class="w-50">
                         <label for="tent_no">شماره چادر<span class="required text-danger">*</span></label>
-                        <select class="form-control" wire:model="tent_no" id="tent_no">
+                        <select class="form-control" wire:model="tent_no" id="tent_no" style="font-family: vazir-fd">
                             <option value="">شماره چادر ...</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -80,7 +80,7 @@
                     </div>
                     <div class="w-50">
                         <label for="row_no">ردیف چادر<span class="required text-danger">*</span></label>
-                        <input type="text" class="form-control" wire:model="row_no" id="row_no">
+                        <input type="number" class="form-control" wire:model="row_no" id="row_no" style="font-family: vazir-fd">
                     </div>
                 </div>
             </div>

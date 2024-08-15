@@ -17,24 +17,42 @@
 </head>
 
 <body class="text-center">
-    @if (count($errors) > 0)
-        <div class = "alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex flex-column">
+                <div>
+                    <h1>هیئت موکب کربلا</h1>
+                </div>
+                <div>
+                    @if (count($errors) > 0)
+                        <div class = "alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </div>
+                <div>
+                    <form action="{{ route('general.login.submit') }}" method="POST">
+                        @csrf
+                        <div class="mb-2">
+                            <label for="national_code" class="sr-only">کد ملی</label>
+                            <input type="number" value="{{old('national_code')}}" id="national_code" name="national_code" class="form-control" placeholder="کد ملی">
+                        </div>
+                        <div class="mb-2">
+                            <label for="password" class="sr-only">رمز عبور</label>
+                            <input type="password" id="password" class="form-control" name="password" placeholder="رمز عبور">
+                        </div>
+                        <div>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">ورود به سامانه</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    @endif
-    <form action="{{ route('general.login.submit') }}" method="POST">
-        @csrf
-        <h1>هیئت موکب کربلا</h1>
-        <label for="national_code" class="sr-only">کد ملی</label>
-        <input type="number" value="{{old('national_code')}}" id="national_code" name="national_code" class="form-control" placeholder="کد ملی">
-        <label for="password" class="sr-only">رمز عبور</label>
-        <input type="password" id="password" class="form-control" name="password" placeholder="رمز عبور">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">ورود به سامانه</button>
-    </form>
+    </div>
 </body>
 
 </html>

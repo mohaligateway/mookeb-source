@@ -1,4 +1,28 @@
 <div class="container-fluid">
+
+    <div class="modal fade modal-danger text-left" id="visitor_modal" tabindex="-1" aria-labelledby="delete" aria-hidden="true" wire:ignore>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel120">{{ __('locale.delete') }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @if(!is_null($visitorId))
+                        <div>
+                            @foreach(json_decode(App\Models\Visitor::find($visitorId)->exited_at) as $key => $item)
+                                <div>
+                                    <span>{{ jdate($item) }}</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-12">
             <div class="text-right text-danger">
@@ -43,6 +67,7 @@
                         <th>موبایل</th>
                         <th>جنسیت</th>
                         <th>استراحتگاه</th>
+                        <th>تاریخ ورود</th>
                         <th>تاریخ خروج</th>
                         <th>عملیات</th>
                     </tr>
@@ -56,11 +81,16 @@
                             <td style="font-family: vazir-fd">{{ $item->mobile }}</td>
                             <td>{{ $item->gender }}</td>
                             <td style="font-family: vazir-fd">{{ $item->tent_no }}</td>
+                            <td style="font-family: vazir-fd; direction: ltr">{{ (!is_null($item->created_at)) ? jdate($item->ceated_at) : '------' }}</td>
                             <td style="font-family: vazir-fd; direction: ltr">{{ (!is_null($item->leaved_at)) ? jdate($item->leaved_at) : '------' }}</td>
                             <td>
-                                <button class="btn btn-sm btn-danger @if(!is_null($item->leaved_at)) disabled @endif" @if(is_null($item->leaved_at)) wire:click="leavedAt({{ $item->id }})" @endif">ثبت خروج</button>
-                                <button class="btn btn-sm btn-success" wire:click="exitedAt({{ $item->id }})">ثبت تردد</button>
-                                <button class="btn btn-sm btn-primary" wire:click="exitedAt({{ $item->id }})">مشاهده ثبت ترددها</button>
+                                @if(is_null($item->leaved_at))
+                                    <button class="btn btn-sm btn-danger" wire:click="leavedAt({{ $item->id }})">خروج</button>
+                                @endif
+                                <button class="btn btn-sm btn-success" wire:click="exitedAt({{ $item->id }})">تردد</button>
+                                @if(!is_null($item->exited_at))
+                                    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#visitor_modal" wire:click="showModal({{ $item->id }})">مشاهده</button>
+                                @endif
                             </td>
                         </tr>
                     @empty
@@ -78,6 +108,7 @@
                         <th>موبایل</th>
                         <th>جنسیت</th>
                         <th>استراحتگاه</th>
+                        <th>تاریخ ورود</th>
                         <th>تاریخ خروج</th>
                         <th>عملیات</th>
                     </tr>
